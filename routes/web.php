@@ -22,6 +22,9 @@ Route::get('/home/all', 'ProductController@index')->name('data.all');
 Route::post('/home/create', 'ProductController@create')->name('data.save');
 Route::post('/home/delete/{id}', 'ProductController@delete')->name('data.delete');
 Route::post('/home/update/{id}', 'ProductController@update')->name('data.update');
+
 Route::get('/notif', 'ProductController@disNot')->name('notif');
+
 Route::get('/show/data/{id}', 'ProductController@dataDis')->name('show.data');
+
 Route::post('/markAsRead', 'ProductController@markAsRead')->name('mark.read');

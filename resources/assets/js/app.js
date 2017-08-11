@@ -23,7 +23,7 @@ const app = new Vue({
     el: '#app',
     methods: {
         markRead() {
-            axios.post('markAsRead').then(response => {
+            axios.post('/markAsRead').then(response => {
 
             });
         }

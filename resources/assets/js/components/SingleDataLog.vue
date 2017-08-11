@@ -2,6 +2,8 @@
     <tr>
         <td>
             <span>{{ data.user.name }}</span>
+            <input type="hidden" v-model="editForm.id" >
+            <input type="hidden" v-model="editForm.user_id">
         </td>
         <td>
             <input type="text" class="form-control" v-if="edit" v-model="editForm.title">
@@ -26,6 +28,8 @@
             return {
                 edit: false,
                 editForm: {
+                    id:'',
+                    user_id: '',
                     title: '',
                     description: ''
                 }
@@ -36,6 +40,8 @@
                 this.edit = true;
                 this.editForm.title = this.data.title;
                 this.editForm.description = this.data.description;
+                this.editForm.id = this.data.id;
+                this.editForm.user_id = this.data.user_id;
             },
             cancelEdit() {
                 this.edit = false;

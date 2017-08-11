@@ -65,10 +65,11 @@ class ProductController extends Controller
 
     public function update($id,Request $request,Product $product)
     {
+        $user_id = $request->user_id;
         $this->product->find($id)->update($request->all());
+        $this->user->find($user_id)->notify(new DataChange($id));
 
-        auth()->user()->notify(new DataChange($id));
-//        $this->product->notifications()->where('notifiable_id',$id)->update(["read_at" => ""]);
+//      $this->product->notifications()->where('notifiable_id',$id)->update(["read_at" => ""]);
 
 
         return response()->json([

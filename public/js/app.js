@@ -1205,7 +1205,7 @@ var app = new Vue({
     el: '#app',
     methods: {
         markRead: function markRead() {
-            axios.post('markAsRead').then(function (response) {});
+            axios.post('/markAsRead').then(function (response) {});
         }
     }
 });
@@ -42367,7 +42367,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -42446,6 +42446,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             allData: [],
             data: {
                 user: '',
+                id: '',
                 title: '',
                 description: ''
             }
@@ -42663,7 +42664,7 @@ exports = module.exports = __webpack_require__(9)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -42695,6 +42696,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['data'],
@@ -42702,6 +42705,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             edit: false,
             editForm: {
+                id: '',
+                user_id: '',
                 title: '',
                 description: ''
             }
@@ -42713,6 +42718,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.edit = true;
             this.editForm.title = this.data.title;
             this.editForm.description = this.data.description;
+            this.editForm.id = this.data.id;
+            this.editForm.user_id = this.data.user_id;
         },
         cancelEdit: function cancelEdit() {
             this.edit = false;
@@ -42720,9 +42727,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         productUpdate: function productUpdate(oldProduct, newProduct) {
             var _this = this;
 
-            axios.post('home/update/' + oldProduct.id, newProduct).then(function (response) {
+            this.edit = false;
+            axios.post('/home/update/' + oldProduct.id, newProduct).then(function (response) {
                 _this.$emit('update-product');
-                _this.edit = false;
             });
         }
     }
@@ -42733,7 +42740,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('tr', [_c('td', [_c('span', [_vm._v(_vm._s(_vm.data.user.name))])]), _vm._v(" "), _c('td', [(_vm.edit) ? _c('input', {
+  return _c('tr', [_c('td', [_c('span', [_vm._v(_vm._s(_vm.data.user.name))]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.id),
+      expression: "editForm.id"
+    }],
+    attrs: {
+      "type": "hidden"
+    },
+    domProps: {
+      "value": (_vm.editForm.id)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.id = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.editForm.user_id),
+      expression: "editForm.user_id"
+    }],
+    attrs: {
+      "type": "hidden"
+    },
+    domProps: {
+      "value": (_vm.editForm.user_id)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.editForm.user_id = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('td', [(_vm.edit) ? _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",

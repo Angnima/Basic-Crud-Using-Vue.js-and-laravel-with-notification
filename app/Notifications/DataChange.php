@@ -55,7 +55,7 @@ class DataChange extends Notification
         return [
             "DataId" => $this->product,
             "UpdateTime" => Carbon::now(),
-            "User" => $notifiable
+            "User" => Auth::User()
         ];
     }
 
